@@ -7,11 +7,13 @@ Pod::Spec.new do |spec|
   spec.summary          = 'Credit card scanning for mobile apps'
   spec.social_media_url = 'https://twitter.com/cardio'
   spec.source           = { :git => 'https://github.com/card-io/card.io-iOS-SDK.git', :tag => "#{spec.version}" }
-  spec.platform         = :ios, '6.1'
-  spec.ios.deployment_target = '6.1'
+  spec.platform         = :ios, '8.0'
+  spec.ios.deployment_target = '8.0'
   spec.requires_arc     = true
-  spec.source_files     = 'CardIO/*.h'
+  spec.public_header_files = 'CardIO.framework/**/*.h'
+  spec.source_files     = ['CardIO.framework/**/*.h','Empty.m']
   spec.frameworks       = 'Accelerate', 'AVFoundation', 'AudioToolbox', 'CoreMedia', 'CoreVideo', 'MobileCoreServices', 'OpenGLES', 'QuartzCore', 'Security', 'UIKit'
   spec.libraries        = 'c++'
-  spec.vendored_libraries = 'CardIO/libCardIO.a', 'CardIO/libopencv_core.a', 'CardIO/libopencv_imgproc.a'
+  spec.prepare_command	= 'touch Empty.m'
+  spec.vendored_libraries = 'libCardIO.a', 'libopencv_core.a', 'libopencv_imgproc.a'
 end
